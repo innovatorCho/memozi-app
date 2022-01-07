@@ -4,24 +4,60 @@ import './App.css';
 function App() {
 
   const [textlen, setTextLen] = useState(0);
+  const [textCount, setTextCount] = useState(0);
   const [textString, setTextString] = useState('');
 
   const [checkedSpace, setCheckedSpace] = useState(false);
   const [checkedEnter, setCheckedEnter] = useState(false);
+
+  const [spaceNum, setSpaceNum] = useState(0);
+  const [minusNum, setMinsNum] = useState(0);
+  const [lineNum, setLineNum] = useState(0);
+  const [multiByte, setMultByte] = useState(0);
+  const [singleByte, setSingleByte] = useState(0);
 
   const CODE_SPACE = 'CSPACE';
   const CODE_ENTER = 'CENTER';
 
   const handleTextArea = (e) => {
     setTextLen(e.target.value.length);
+    setTextCount(e.target.value.length);
     setTextString(e.target.value);
+
+    let spacenum = 0, minusnum = 0, linenum = 0, multibyte = 0, singlebyte = 0;
+
+    for(let i = 0 ; i < e.target.value.length ; i++) {
+      //console.log(textString.charAt(i));
+      if(e.target.value.charAt(i)===' '){
+        spacenum++;
+      }
+      if(e.target.value.charCodeAt(i)===13 || e.target.value.charCodeAt(i)===10){
+        minusnum++;
+      }
+      if(e.target.value.charCodeAt(i)===10){
+        linenum++;
+      }
+      if(e.target.value.charCodeAt(i)>255){
+        multibyte++;
+      }else{
+        singlebyte++;
+      }
+    }
+    setSpaceNum(spacenum);
+    setMinsNum(minusnum);
+    setLineNum(linenum);
+    setMultByte(multibyte);
+    setSingleByte(singlebyte);
+    console.log(spacenum + " " + linenum + " " + minusnum + " " + multibyte + " " + singlebyte);
+    console.log(spaceNum + " " + lineNum + " " + minusNum + " " + multiByte + " " + singleByte);
+    
+    let totalCount = singlebyte + multibyte;
+    setTextLen(totalCount);
     //setTextCount();
   }
 
   const handleChecked = (e) => {
-   // console.log(`${e.target.defaultValue} checked ${e.target.checked}, text : ${textlen}`);
-    //console.log(textString + " " + textString.length);
-
+    
     if(e.target.defaultValue === CODE_SPACE) {
       setCheckedSpace(e.target.checked);
     }
@@ -29,40 +65,22 @@ function App() {
       setCheckedEnter(e.target.checked);
     }
     console.log(`${CODE_ENTER} is ${checkedEnter} and ${CODE_SPACE} is ${checkedSpace}`);
-    setTextCount(); 
+    getTextCount(); 
   }
 
-  const setTextCount = () => {
-    let spacenum = 0, minusnum = 0, linenum = 0, multibyte = 0, singlebyte = 0;
-    console.log(textString);
-
-    for(let i = 0 ; i < textString.length ; i++) {
-      //console.log(textString.charAt(i));
-      if(textString.charAt(i)===' '){
-        spacenum++;
-      }
-      if(textString.charCodeAt(i)===13 || textString.charCodeAt(i)===10){
-        minusnum++;
-      }
-      if(textString.charCodeAt(i)===10){
-        linenum++;
-      }
-      if(textString.charCodeAt(i)>255){
-        multibyte++;
-      }else{
-        singlebyte++;
-      }
-    }
-    let totalCount = singlebyte + multibyte;
+  const getTextCount = () => {
+    console.log(`${textlen}, spacenum : ${spaceNum}, lineNum : ${lineNum}`);
+    let totalCount = textCount;
 
     if(checkedSpace) {
-      totalCount = totalCount - spacenum;
+      totalCount = totalCount - spaceNum;
     }
     if(checkedEnter) {
-      totalCount = totalCount - linenum;
+      totalCount = totalCount - lineNum;
     }
     setTextLen(totalCount);
-    console.log(spacenum + " " + linenum + " " + minusnum + " " + multibyte + " " + singlebyte);
+   // setTextLen(totalCount);
+    console.log(spaceNum + " " + lineNum + " " + minusNum + " " + multiByte + " " + singleByte);
    // console.log(`total count : ${total}`);
   }
 

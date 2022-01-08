@@ -1,0 +1,36 @@
+.textComponent {
+    width: 70%;
+    border: solid;
+}
+
+.memozi-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px;
+    box-sizing: block;
+    border: solid 1px tomato;    
+}
+.memozi-header__block{
+    width: 33%;
+    height: 100%;
+}
+
+.textComponent-header{
+    text-align: center;
+    font-size: 30px;
+}
+.memozi-header__label{
+    font-weight: bold;
+}
+.memozi-header__div{
+    border: solid 1px;
+    background-color: rgb(138, 180, 236, 0.3);
+}
+.memozi-textarea__header{
+    display: flex;
+    justify-content: center;
+}
+.memozi-textarea {
+    width: 80%;
+    height: 300px;
+}

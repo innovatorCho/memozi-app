@@ -1,0 +1,9 @@
+.textLenInfo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 150vh;
+    padding: 15px 15px;
+    margin-left: 100px;
+}

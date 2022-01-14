@@ -56,7 +56,7 @@ const TextLenCom = () => {
       setSpaceCount(speceCnt);
       setLineCount(lineCnt);
       setTextLen(totalCount);
-    });
+    }, [checkedEnter, checkedSpace, textString]);
    
     return(
         <div className="textComponent">

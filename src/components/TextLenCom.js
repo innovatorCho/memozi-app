@@ -3,7 +3,8 @@ import './TextLenCom.css';
 
 const TextLenCom = () => {
     const [textlen, setTextLen] = useState(0);
-    const [textCount, setTextCount] = useState(0);
+    const [spaceCount, setSpaceCount] = useState(0);
+    const [lineCount, setLineCount] = useState(0);
     const [textString, setTextString] = useState('');
   
     const [checkedSpace, setCheckedSpace] = useState(false);
@@ -14,9 +15,7 @@ const TextLenCom = () => {
   
     const handleTextArea = (e) => {
       setTextLen(e.target.value.length);
-      setTextCount(e.target.value.length);
       setTextString(e.target.value);
-      //setTextCount();
     }
   
     const handleChecked = (e) => {
@@ -31,33 +30,31 @@ const TextLenCom = () => {
   
     useEffect(() => {
   
-      let spacenum = 0, minusnum = 0, linenum = 0, multibyte = 0, singlebyte = 0;
+      let speceCnt = 0, lineCnt = 0, multiByte = 0, singleByte = 0;
   
       for(let i = 0 ; i < textString.length ; i++) {
-        //console.log(textString.charAt(i));
         if(textString.charAt(i)===' '){
-          spacenum++;
-        }
-        if(textString.charCodeAt(i)===13 || textString.charCodeAt(i)===10){
-          minusnum++;
+          speceCnt++;
         }
         if(textString.charCodeAt(i)===10){
-          linenum++;
+          lineCnt++;
         }
         if(textString.charCodeAt(i)>255){
-          multibyte++;
+          multiByte++;
         }else{
-          singlebyte++;
+          singleByte++;
         }
       }
-      let totalCount = singlebyte + multibyte;
+      let totalCount = singleByte + multiByte;
   
       if(checkedSpace) {
-        totalCount = totalCount - spacenum;
+        totalCount = totalCount - speceCnt;
       }
       if(checkedEnter) {
-        totalCount = totalCount - linenum;
+        totalCount = totalCount - lineCnt;
       }
+      setSpaceCount(speceCnt);
+      setLineCount(lineCnt);
       setTextLen(totalCount);
     });
    
@@ -67,19 +64,19 @@ const TextLenCom = () => {
                 <h1>글자수 세기</h1>
             </header>
             <div className='memozi-header'>
-                <div className="memozi-header__div memozi-header__block">
+                <div className="memozi-header__div">
                     <label className='memozi-header__label'>
                         <span>현재 글자 수 : </span>
                         {textlen}
                     </label>
                 </div>
-                <div className='memozi-header__option__space memozi-header__block'>
-                <label className='memozi-header__option__space__label'>띄어쓰기 빼기</label>
-                <input type="checkbox" className='memozi-header__option__space__blank' value={CODE_SPACE} onChange={handleChecked}></input>
+                <div className='memozi-header__option__space'>
+                  <input type="checkbox" className='memozi-header__option__space__blank' value={CODE_SPACE} onChange={handleChecked}></input>
+                  <label className='memozi-header__option__space__label'>띄어쓰기 제외(띄어쓰기 수 : {spaceCount})</label>                
                 </div>
-                <div className='memozi-header__option__enter memozi-header__block'>
-                <label className='memozi-header__option__enter__label'>줄바꿈 빼기</label>
-                <input type="checkbox" className='memozi-header__option__enter__blank' value={CODE_ENTER} onChange={handleChecked}></input>
+                <div className='memozi-header__option__enter'>
+                  <input type="checkbox" className='memozi-header__option__enter__blank' value={CODE_ENTER} onChange={handleChecked}></input>                  
+                  <label className='memozi-header__option__enter__label' >줄바꿈 제외(줄바꿈 수 : {lineCount})</label>                
                 </div>
             </div>
             <div className="memozi-textarea__header">

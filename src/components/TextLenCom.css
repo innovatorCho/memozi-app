@@ -1,36 +1,43 @@
 .textComponent {
-    width: 70%;
-    border: solid;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 150vh;
 }
 
 .memozi-header {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     padding: 15px 15px;
-    box-sizing: block;
-    border: solid 1px tomato;    
+    width: 80%;
+    margin-left: 125px;
 }
-.memozi-header__block{
-    width: 33%;
-    height: 100%;
+
+.memozi-header__option__space {
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 .textComponent-header{
+    display: flex;
+    justify-content: center;
     text-align: center;
     font-size: 30px;
 }
 .memozi-header__label{
+    font-size: 25px;
     font-weight: bold;
 }
-.memozi-header__div{
-    border: solid 1px;
-    background-color: rgb(138, 180, 236, 0.3);
-}
+
 .memozi-textarea__header{
     display: flex;
     justify-content: center;
 }
 .memozi-textarea {
     width: 80%;
-    height: 300px;
+    height: 380px;
+    font-family: inherit;
+    font-size: large;
 }

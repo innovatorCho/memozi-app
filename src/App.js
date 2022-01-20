@@ -1,15 +1,20 @@
 import './App.css';
-import TextLenCom from './components/TextLenCom';
-import TextLenInfo from './components/TextLenInfo';
+
+import TextLenPage from './pages/TextLenPage';
+import WordCrossPage from './pages/WordCrossPage';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
  
   return (
-    <div className="App">
-      <TextLenCom />
-      <TextLenInfo />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<TextLenPage />} />
+        <Route path="/wordquiz" element={<WordCrossPage />} />
+      </Routes>
+    </Router>
   );
 }
 

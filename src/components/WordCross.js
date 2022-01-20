@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './WordCross.css';
 
 const WordCross = () => {
@@ -71,6 +72,11 @@ const WordCross = () => {
                 <button onClick={handleChecked}>정렬하기</button>
             </div>
         </div>
+=======
+const WordCross = () => {
+    return (
+        <span>This is Word Cross Quiz !</span>
+>>>>>>> 661ce21935c257b49425410382c8679f6223b41a
     );
 }
 

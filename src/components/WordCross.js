@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import './WordCross.css';
 
 const WordCross = () => {
@@ -72,6 +71,8 @@ const WordCross = () => {
                 <button onClick={handleChecked}>정렬하기</button>
             </div>
         </div>
+    )
+}
 
 
 export default WordCross;

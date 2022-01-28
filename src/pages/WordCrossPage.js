@@ -1,11 +1,12 @@
 import WordCross from "../components/WordCross";
 import Table from "../components/Table";
+
 const WordCrossPage = () => {
     return (
         <div>
-            <WordCross />
+            <Table />
         </div>
     );
-};
+}
 
 export default WordCrossPage;
